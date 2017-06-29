@@ -1,8 +1,8 @@
 === WP Cowsay ===
 Contributors: kamataryo
 Tags: cowsay, shortcode
-Requires at least: 4.0
-Tested up to: 4.8.0
+Requires at least: 4.8
+Tested up to: 4.8
 Stable tag: 0.0.1
 
 *WP Cowsay* enables Cowsay shortcode, everyone looking foward!
