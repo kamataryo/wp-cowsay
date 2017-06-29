@@ -1,0 +1,15 @@
+# files to eliminate for release.
+
+.git
+.DS_Store
+npm-debug.log
+.sass-cache
+.travis.yml
+.gitignore
+.svnignore
+tests
+phpunit.xml
+package.json
+node_modules
+gulpfile.js
+Gruntfile.js

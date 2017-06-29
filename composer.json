@@ -1,0 +1,15 @@
+{
+    "name": "kamataryo/wp-cowsay",
+    "description": "Enable cowsay shortcode!",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "kamataryo",
+            "email": "mugil.cephalus+composer.org@gmail.com"
+        }
+    ],
+    "require": {
+        "alrik11es/cowsayphp": "^1.2"
+    }
+}
