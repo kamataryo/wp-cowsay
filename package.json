@@ -15,7 +15,9 @@
   },
   "scripts": {
     "generateMo": "gulp gettext",
-    "generatePot": "grunt i18n"
+    "generatePot": "grunt i18n",
+    "deploy_keygen": "ssh-keygen -t rsa -b 4096 -C \"$(git config user.email)\" -f ./.travis_rsa -N ''",
+    "encrypt_deploy_key": "travis encrypt-file ./.travis_rsa --add"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
