@@ -7,18 +7,10 @@ php:
   - 5.6
   - 7.0
 
-matrix:
-  include:
-  - php: 5.6
-    env: WP_VERSION=latest WP_MULTISITE=1
 env:
-  matrix:
-  - WP_VERSION=latest WP_MULTISITE=0
-  - WP_VERSION=4.0 WP_MULTISITE=0
   global:
-  - WP_VERSION_TO_DEPLOY: latest
+  - WP_VERSION: latest
   - PHP_VERSION_TO_DEPLOY: 5.6
-  - WP_MULTISITE_TO_DEPLOY: 0
   - SVN_REF: https://plugins.svn.wordpress.org/wp-cowsay/
   - GH_REF: github.com/kamataryo/wp-cowsay.git
 

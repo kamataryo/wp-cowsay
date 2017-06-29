@@ -7,6 +7,12 @@ if [[ $TRAVIS_TAG != "" ]]; then
   exit 0
 fi
 
+if [[ $TRAVIS_PHP_VERSION != $PHP_VERSION_TO_DEPLOY ]]; then
+  echo "TRAVIS_PHP_VERSION=$TRAVIS_PHP_VERSION"
+  echo 'Auto release will not be perfomed against tagged the PHP version.'
+  exit 0
+fi
+
 BRANCH_TO_DEPLOY="latest"
 
 if [ $TRAVIS_BRANCH != "master" ]; then
