@@ -19,11 +19,9 @@ if [ $TRAVIS_BRANCH != "master" ]; then
   exit 0
 fi
 
-git config user.name 'kamataryo@travis'
-git config user.email "kamataryo@users.noreply.github.com"
-
 mkdir __dist
-cp -r ./languages __dist/
+mkdir __dist/languages
+cp ./languages/wp-cowsay-*.mo __dist/languages
 cp -r ./vendor __dist/
 cp readme.txt __dist/
 cp screenshot-*.png __dist/
@@ -31,6 +29,8 @@ cp wp-cowsay.php __dist/
 
 cd __dist
 git init
+git config user.name 'kamataryo@travis'
+git config user.email "kamataryo@users.noreply.github.com"
 git remote add origin git@github.com:$GH_REF.git
 git add .
 git commit -m"Release from Travis CI[ci skip]"
