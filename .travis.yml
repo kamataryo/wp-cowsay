@@ -12,7 +12,7 @@ env:
   - WP_VERSION: latest
   - PHP_VERSION_TO_DEPLOY: 5.6
   - SVN_REF: https://plugins.svn.wordpress.org/wp-cowsay/
-  - GH_REF: github.com/kamataryo/wp-cowsay.git
+  - GH_REF: kamataryo/wp-cowsay
   - BRANCH_TO_RELEASE: release
 
 notifications:
