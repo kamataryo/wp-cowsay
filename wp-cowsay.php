@@ -23,11 +23,6 @@ class Cowsay {
 	private $shotcode_tag = 'cowsay';
 
 	/**
-	 * cow instance
-	 * @var Cow
-	 */
-
-	/**
 	 * register plugin
 	 * @return void
 	 */
@@ -54,9 +49,9 @@ class Cowsay {
 	 * get shortcode tag
 	 * @return [filter]
 	 */
-  	private function get_shortcode_tag() {
-    	return apply_filters( 'wp_cowsay_shortcode_tag', $this->shotcode_tag );
-  	}
+	private function get_shortcode_tag() {
+		return apply_filters( 'wp_cowsay_shortcode_tag', $this->shotcode_tag );
+	}
 
 	/**
 	 * do shortcode to render to cowsay
@@ -72,7 +67,7 @@ class Cowsay {
 		}
 		$cow = \Cowsayphp\Farm::create( \Cowsayphp\Farm\Cow::class );
 		return '<pre class="wp-cowsay">' . $cow->say($content) . '</pre>';
-  }
+	}
 
 }
 
