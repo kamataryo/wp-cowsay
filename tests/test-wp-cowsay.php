@@ -16,18 +16,6 @@ class WPCowsay_Test extends WP_UnitTestCase {
 	}
 
 	/**
-	 * shortcode execution finished successfully with attribute-like content.
-	 * It should render to say Moo!.
-	 * @test
-	 */
-	public function shortcode_test_success_with_attr_escaped() {
-		$this->assertRegExp(
-			'/^(<pre class="wp-cowsay">).*(Moo!).*(\(oo\)).*(<\/pre>)$/s',
-			do_shortcode( '[cowsay "Moo!"]' )
-		);
-	}
-
-	/**
 	 * shortcode execution finished successfully with attribute-like content not-escaped.
 	 * It should render to say Moo.
 	 * @test

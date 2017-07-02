@@ -18,7 +18,6 @@ You can use the shortcode in several way.
 
 * `[cowsay Moo]`
 * `[cowsay Moo Moo]`
-* `[cowsay "Moo!"]`
 * `[cowsay]Moo![/cowsay]`
 
 = Support =
