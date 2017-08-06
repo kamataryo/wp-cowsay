@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-exit 0
-
 # select env to release
 
 if [[ $TRAVIS_TAG == "" ]]; then
