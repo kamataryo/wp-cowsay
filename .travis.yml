@@ -14,6 +14,7 @@ env:
   - SVN_REF: https://plugins.svn.wordpress.org/wp-cowsay/
   - GH_REF: kamataryo/wp-cowsay
   - BRANCH_TO_RELEASE: release
+  - secure: EjL85NUxkrgn3HJ/+zuGz7fFJ6RZNWcujXfkJ0wo2VeFXV/NPdDcTuEbNZoHlpdxXsZQQ1hGEdAQLLXBsG4mPY+ae6uy7vouzNsK2430m6BYue+0FzIf1jzUivJqPJu52IDzYZdwPUJQugdCtTxQ9y6iwV3LvoL/hDXSdFHKK8IoEkhFfDGNSRvW0RWgheLdVm+COOo+BO+Xys8liCA7SOdtjIpqJjBQf2FEnoM0+mk1JdEHKgG4jva3qKIe7mijfIX351wppf0d3vQouu3KQD0n1LQ9KKOnRNVpgXLKNEF4o6OPkmaT3xFkOEOEqU/9NBLeuiT+idHvu3o8fE8F2bq34EDZWdeMcBqUuq3ItoGnhndJuW3JEZVgIgFTnpQsBKND1LrZMoA4dxeVNMUd1BeQmpE+d3Sd4v/S3sIPor6KseMukNU97hH9WbdgU0IAdeXLt1sVbfGGMclzj148iEgYFDDIeK0MJ5v0rSTj7fdHl++Vmintm/Th6qkGtLmzScPY2ZxvTRlEsbm5yJEQ3aSKt83HQuRn3LFcUoc0iHXcyEgU9SlT3/kqkPqFDtKZ0nYdKWY2k6wF+mZCR/F91N3Z8Va+OYlYIrPPGMs+/t8QJ+kfHrrkBkonnlfZUX9xTy8piteuUsEZqksR1PF03Rpclbz5uvXBcIU6B6ePb3Q=
 
 notifications:
   email:

@@ -65,3 +65,63 @@ git checkout -b $BRANCH_TO_RELEASE
 git push -f origin $BRANCH_TO_RELEASE
 
 # svn release
+# prepare repo for svn
+echo "preparing svn repo.."
+## realy delete unnesessary files.
+## TODO: need to use `svn propset`.
+## This way don't accept * and ! syntax.
+if [[ -e "./.svnignore" ]]; then
+    while read line
+    do
+        if [[ -e $line ]]; then
+            rm -r "$line"
+        fi
+    done <.svnignore
+fi
+
+RELEASE_DIR=$(pwd)
+
+## prepare temp directory for svn
+cd "$(mktemp -d)"
+svn co --quiet "$SVN_REF"
+cd "$(basename "$SVN_REF")"
+
+## remove all files at first
+find ./assets -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
+find ./trunk -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
+
+## get files from the git repository used
+cp -r "$RELEASE_DIR"/* ./trunk
+
+## move the assets(screenshots and banar images)
+find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "screenshot-[1-9][0-9]*\.[png|jpg]." | xargs -I% mv % ./assets
+find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "banner-[1-9][0-9]*x[1-9][0-9]*\.[png|jpg]." | xargs -I% mv % ./assets
+
+## create tag for svn
+if [[ -e "./tags/${TRAVIS_TAG}" ]]; then
+    echo "existing 'tags/${TRAVIS_TAG}' is overwriting.."
+    find "./tags/${TRAVIS_TAG}" -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
+else
+    mkdir "./tags/${TRAVIS_TAG}"
+fi
+echo "creating 'tags/${TRAVIS_TAG}'.."
+cp -r "$RELEASE_DIR"/* "./tags/${TRAVIS_TAG}"
+
+# if [[ -e "./.svnignore" ]]; then
+#     svn propset svn:ignore -F ./.svnignore .
+# fi
+
+## putting svn versioning
+svn st | grep '^!' | sed -e 's/\![ ]*/svn del -q /g' | sh
+svn st | grep '^?' | sed -e 's/\?[ ]*/svn add -q /g' | sh
+
+# svn commit
+echo 'svn committing..'
+svn ci --quiet -m "Deploy from travis. Original commit is $TRAVIS_COMMIT." --username "$SVN_USER" --password "$SVN_PASS" --non-interactive > /dev/null 2>&1
+echo "svn commiting finished."
+
+# make sure that sensitive values are aborted
+unset GH_TOKEN
+unset SVN_PASS
+
+exit 0
