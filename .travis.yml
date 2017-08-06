@@ -10,6 +10,7 @@ php:
 env:
   global:
   - WP_VERSION: latest
+  - WP_VERSION_TO_DEPLOY: latest
   - PHP_VERSION_TO_DEPLOY: 5.6
   - SVN_REF: https://plugins.svn.wordpress.org/wp-cowsay/
   - GH_REF: kamataryo/wp-cowsay
