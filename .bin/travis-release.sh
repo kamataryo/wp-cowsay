@@ -32,7 +32,7 @@ TESTED_WP_VERSION=$(node .bin/get-latest-wordpress-version.js)
 
 ## tested WordPress version
 
-sed -i -e \"s/^Tested up to: .*$/Tested up to: $TESTED_WP_VERSION/g\" ./readme.txt
+# sed -i -e \"s/^Tested up to: .*$/Tested up to: $TESTED_WP_VERSION/g\" ./readme.txt
 
 ## plugin versions
 
