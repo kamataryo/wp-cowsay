@@ -4,18 +4,7 @@ language:
   - php
 
 php:
-  - 5.6
   - 7.0
-
-env:
-  global:
-  - WP_VERSION: latest
-  - WP_VERSION_TO_DEPLOY: latest
-  - PHP_VERSION_TO_DEPLOY: 5.6
-  - SVN_REF: https://plugins.svn.wordpress.org/wp-cowsay/
-  - GH_REF: kamataryo/wp-cowsay
-  - BRANCH_TO_RELEASE: release
-  - secure: qnyLbqaYBuxxv4c1iLGSyfw6bgq6sXrXXEcXbTDGQpAbcv6coedmpTQWBFniiqyZNHhhDPpXuja1u7kHJvwG1T6en26sb+MlLrGSST5TJb2jIMJ2svni9e4BCC+gMr+pHksUrJrw1VmrGDCX/K3DuQGgfa4iTZgttTx7aHLIhxfILKUgUfGe37SdulMdtIIO8PqvTXozJmhSFOxjuEiUwnsdISjUAtyMcx4M1QOy3xPvjsafroHvbZ9/ImWqnFX1WTZ21oeRvW0UUPNef+LAQbYLxMYa6CDZ19gqc1c4mFHoRHk0gdgYKzc0V2QGEFbCaoZGss5arI9JkTiZBBKBVeHfJEPjcthv/IjJ0qqJJEM+muNu0WqmqwoPvWL+wctXp5RddOSIgEOYj/fpoG8dwA5OPlxs0fwuTBZCXDiocXqFEghDvKmYuXonopA+BC+D1Dchqa5YZIljBJKf+AlULwrECsupcPsrw0XJT2tP1oa4nwwNF+1juXSOI3qa6395qt04NDqizlvXgnzyNZFgC2Xr3+wrSCie0ophdxk3QmLGbZDKUEs0F7OlLZNV9SMj5+i1FNj8fLhHemC88KnorbF64Oguh3ycksJRWq+qjeKgLBHvibkFVqDbgRaFOpYynmB1mDpNB4YCdCR1koYj/2Sd/qisVJ9Afp8JWa5ypR0=
 
 notifications:
   email:
@@ -30,8 +19,3 @@ before_script:
 script:
 - phpunit
 - npm run generateMo
-
-after_success:
-  - openssl aes-256-cbc -K $encrypted_a72eadd36947_key -iv $encrypted_a72eadd36947_iv -in .travis_rsa.enc -out ./.travis_rsa -d
-  - mv ./.travis_rsa $HOME/.ssh/id_rsa && chmod 600 $HOME/.ssh/id_rsa
-  - curl https://raw.githubusercontent.com/KamataRyo/travis-sctipts-collection/master/deploy-wp-plugin-with-private-key.sh | bash
