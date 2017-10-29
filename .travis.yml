@@ -23,8 +23,7 @@ notifications:
     on_failure: change
 
 before_script:
-  - curl https://raw.githubusercontent.com/kamataryo/travis-sctipts-collection/master/install-wp-tests.sh > ./install-wp-tests.sh
-  - bash ./install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+  - bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
   - composer install
   - npm install
 
