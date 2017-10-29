@@ -3,7 +3,7 @@ Contributors: kamataryo
 Tags: cowsay, shortcode
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 0.0.1
+Stable tag: 0.0.3
 
 *WP Cowsay* enables Cowsay shortcode, everyone looking foward!
 

@@ -1,25 +1,14 @@
 {
   "name": "wp-cowsay",
-  "version": "0.0.1",
-  "description": "Enable cowsay shortcode!",
-  "keywords": [
-    "cowsay",
-    "shortcode"
-  ],
-  "bugs": "https://github.com/kamataryo/wp-cowsay/issues",
-  "license": "GPL-2.0",
-  "author": "kamataryo",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kamataryo/wp-cowsay"
-  },
   "scripts": {
     "generateMo": "gulp gettext",
     "generatePot": "grunt i18n",
-    "deploy_keygen": "ssh-keygen -t rsa -b 4096 -C \"$(git config user.email)\" -f ./.travis_rsa -N ''",
+    "deploy_keygen":
+      "ssh-keygen -t rsa -b 4096 -C \"$(git config user.email)\" -f ./.travis_rsa -N ''",
     "encrypt_deploy_key": "travis encrypt-file ./.travis_rsa --add",
     "preversion": ".bin/version-increment.sh && git fetch",
-    "postversion": "git push origin master && git push origin $(git describe --abbrev=0 --tags)"
+    "postversion":
+      "git push origin master && git push origin $(git describe --abbrev=0 --tags)"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
