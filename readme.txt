@@ -3,7 +3,7 @@ Contributors: kamataryo
 Tags: cowsay, shortcode
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 0.0.4
+Stable tag: 0.0.5
 
 *WP Cowsay* enables Cowsay shortcode, everyone looking foward!
 
@@ -37,6 +37,10 @@ You can use the shortcode in several way.
 
 == Changelog ==
 
+= 0.0.5 =
+
+* Remove unnecessary files.
+
 = 0.0.4 =
 
 * add changelogs.
@@ -44,7 +48,6 @@ You can use the shortcode in several way.
 = 0.0.3 =
 
 * Add Japanese translation.
-* Remove unnecessary files.
 
 = 0.0.2 =
 
