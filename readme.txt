@@ -3,7 +3,7 @@ Contributors: kamataryo
 Tags: cowsay, shortcode
 Requires at least: 4.8
 Tested up to: 4.8
-Stable tag: 0.0.3
+Stable tag: 0.0.4
 
 *WP Cowsay* enables Cowsay shortcode, everyone looking foward!
 
@@ -17,7 +17,6 @@ Stable tag: 0.0.3
 You can use the shortcode in several way.
 
 * `[cowsay Moo]`
-* `[cowsay Moo Moo]`
 * `[cowsay]Moo![/cowsay]`
 
 = Support =
@@ -34,9 +33,20 @@ You can use the shortcode in several way.
 == Screenshots ==
 
 1. Type a shortcode.
-2. Cow say!
+2. Cow says!
 
 == Changelog ==
+
+= 0.0.4 =
+
+* add changelogs.
+
+= 0.0.3 =
+
+* Add Japanese translation.
+* Remove unnecessary files.
+
+= 0.0.2 =
 
 = 0.0.1 =
 * first release.
