@@ -15,8 +15,7 @@ shopt -s dotglob
 
 # filter whether deploy or not
 if ! [[ "$WP_VERSION"         == "$WP_VERSION_TO_DEPLOY" && \
-        "$TRAVIS_PHP_VERSION" == "$PHP_VERSION_TO_DEPLOY" && \
-        "$WP_MULTISITE"       == "$WP_MULTISITE_TO_DEPLOY" ]]; then
+        "$TRAVIS_PHP_VERSION" == "$PHP_VERSION_TO_DEPLOY" ]]; then
     echo "Not deploying from this matrix.";
     exit 0
 elif [[ "false" != "$TRAVIS_PULL_REQUEST" ]]; then
