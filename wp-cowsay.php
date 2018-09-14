@@ -4,7 +4,7 @@ Plugin Name: WP Cowsay
 Plugin URI: https://github.com/kamataryo/wp-cowsay
 Description: Enable Cowsay shortcode!
 Author: kamataryo
-Version: 0.0.8
+Version: 0.0.9
 Author URI: http://biwako.io/
 */
 
@@ -63,8 +63,9 @@ class Cowsay {
 		require_once( dirname( __FILE__ ) . '/vendor/autoload.php' );
 
 		if ( $content === '' ) {
-			$content = implode( ' ', array_values( $attrs ) );
+			$content = empty($attrs) ? '' : implode( ' ', array_values( $attrs ) );
 		}
+
 		$cow = \Cowsayphp\Farm::create( \Cowsayphp\Farm\Cow::class );
 		return '<pre class="wp-cowsay">' . $cow->say($content) . '</pre>';
 	}
