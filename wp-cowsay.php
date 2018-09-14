@@ -4,7 +4,7 @@ Plugin Name: WP Cowsay
 Plugin URI: https://github.com/kamataryo/wp-cowsay
 Description: Enable Cowsay shortcode!
 Author: kamataryo
-Version: 0.0.5
+Version: 0.0.8
 Author URI: http://biwako.io/
 */
 
