@@ -6,6 +6,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - run: sudo apt-get install subversion
       - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
       - run: composer install
       - run: npm install
