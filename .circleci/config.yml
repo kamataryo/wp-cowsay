@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test:
+  build:
     docker:
     - image: circleci/php:latest-cli-node
     working_directory: ~/repo
