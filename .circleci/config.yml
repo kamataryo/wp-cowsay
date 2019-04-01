@@ -1,0 +1,44 @@
+version: 2
+jobs:
+  test:
+    docker:
+    - image: circleci/php:latest-cli-node
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+      - run: composer install
+      - run: npm install
+      - run: phpunit
+      - run: npm run generateMo
+
+      - persist_to_workspace:
+          root: .
+          paths:
+              - .
+
+  deploy:
+    docker:
+      - image: circleci/node:lts
+    working_directory: ~/repo
+    steps:
+      - attach_workspace:
+          at: .
+      - run: ./.bin/circle-release.sh
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /.*/
+
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
