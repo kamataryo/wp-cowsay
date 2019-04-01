@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
     - image: circleci/php:latest-cli-node
     working_directory: ~/repo
@@ -38,7 +38,7 @@ workflows:
 
       - deploy:
           requires:
-            - build
+            - test
           filters:
             tags:
               only: /.*/
