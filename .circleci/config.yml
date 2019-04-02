@@ -2,7 +2,8 @@ version: 2
 jobs:
   test:
     docker:
-    - image: circleci/php:7.2
+    - image: circleci/php:5.6
+    - image: circleci/mysql:5.7
 
     working_directory: ~/repo
     steps:
