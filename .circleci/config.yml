@@ -2,12 +2,10 @@ version: 2
 jobs:
   test:
     docker:
-    - image: circleci/php:7.2.9-cli-node
+    - image: wordpress:cli-php-7.2
     working_directory: ~/repo
     steps:
       - checkout
-      - run: sudo apt-get update && sudo apt-get install subversion-tools
-      - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
       - run: composer install
       - run: npm install
       - run: phpunit
