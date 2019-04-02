@@ -2,13 +2,15 @@ version: 2
 jobs:
   test:
     docker:
-    - image: circleci/php:latest
+    - image: circleci/php:7.2
+    - image: circleci/mysql:5.7
+
     working_directory: ~/repo
     steps:
       - checkout
       - run: sudo apt-get install mysql-client subversion-tools
       - run: composer install
-      - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' 127.0.0.1 5.1.1
+      - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost 5.1.1
       - run: vendor/bin/phpunit
 
       - persist_to_workspace:
