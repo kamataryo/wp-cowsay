@@ -26,12 +26,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: |
-          if [ $CIRCLE_TAG ]; then
-            npm run deploy:production
-          else
-            echo ''
-          fi
+      - run: sudo apt-get install subversion-tools
+      - run: .bin/circle-release.sh
 
 workflows:
   version: 2
