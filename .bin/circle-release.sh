@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-# [Environmental Variables]
-# SVN_REF
-# SVN_USER
-# SVN_PASS
-
 set -e
 shopt -s dotglob
 
@@ -14,9 +9,9 @@ else
 	TAG=$CIRCLE_TAG
 fi
 
-# store values for later process
 RELEASE_DIR=$(pwd)
 
+# 例えば .svnignore というファイルを用意しておいて、リリースするプラグインから不要なファイルを除く
 if [[ -e ".svnignore" ]]; then
     cat .svnignore > .gitignore
 fi
@@ -30,23 +25,22 @@ if [[ -e "./.svnignore" ]]; then
     done <.svnignore
 fi
 
-## prepare temp directory for svn
+echo 'preparing temp directory for svn..'
 cd "$(mktemp -d)"
 svn co --quiet "$SVN_REF"
 cd "$(basename "$SVN_REF")"
 
-## remove all files at first
+echo 'removing all files at first..'
 find ./assets -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
 find ./trunk -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
 
-## get files from the git repository used
+echo 'geting files from the git repository used..'
 cp -r "$RELEASE_DIR"/* ./trunk
 
-## move the assets(screenshots and banar images)
+echo 'moving the assets(screenshots and banar images)..'
 find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "screenshot-[1-9][0-9]*\.[png|jpg]." | xargs -I% mv % ./assets
 find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "banner-[1-9][0-9]*x[1-9][0-9]*\.[png|jpg]." | xargs -I% mv % ./assets
 
-## create tag for svn
 if [[ -e "./tags/${TAG}" ]]; then
     echo "existing 'tags/${TAG}' is overwriting.."
     find "./tags/${TAG}" -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
@@ -64,7 +58,7 @@ echo 'putting svn versioning..'
 svn st | grep '^!' | sed -e 's/\![ ]*/svn del -q /g' | sh
 svn st | grep '^?' | sed -e 's/\?[ ]*/svn add -q /g' | sh
 
-# svn commit
+echo 'commiting..'
 svn ci --quiet \
   -m "Deploy from CircleCI" \
   --username "$SVN_USER" \
