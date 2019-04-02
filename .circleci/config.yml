@@ -26,7 +26,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: ./.bin/circle-release.sh
+      - run: |
+          if [ $CIRCLE_TAG ]; then
+            npm run deploy:production
+          else
+            echo ''
+          fi
 
 workflows:
   version: 2
@@ -45,3 +50,5 @@ workflows:
           filters:
             tags:
               only: /.*/
+            branches:
+              ignore: /.*/
