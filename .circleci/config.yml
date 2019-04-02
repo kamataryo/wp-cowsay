@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-    - image: wordpress:cli-php-7.2
+    - image: wordpress:5.1.1
     working_directory: ~/repo
     steps:
       - checkout
