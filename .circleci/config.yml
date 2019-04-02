@@ -4,7 +4,6 @@ jobs:
     docker:
     - image: circleci/php:7.2
     - image: circleci/mysql:5.7
-
     working_directory: ~/repo
     steps:
       - checkout
@@ -21,7 +20,7 @@ jobs:
 
   deploy:
     docker:
-      - image: wordpress:5.1.1
+    - image: circleci/php:7.2
     working_directory: ~/repo
     steps:
       - attach_workspace:
