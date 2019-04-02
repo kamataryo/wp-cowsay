@@ -27,3 +27,6 @@ node_modules
 *.sql
 *.tar.gz
 *.zip
+vendor/bin/cowsayphp
+vendor/composer
+vendor/autoload.php
