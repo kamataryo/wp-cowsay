@@ -2,21 +2,14 @@ version: 2
 jobs:
   test:
     docker:
-    - image: wordpress:5.1.1
+    - image: circleci/php:latest
     working_directory: ~/repo
     steps:
       - checkout
-      - run:
-          name: install composer
-          command: |
-            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-            php -r "if (hash_file('sha384', 'composer-setup.php') === '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-            php composer-setup.php
-            php -r "unlink('composer-setup.php');"
-      - run: ./composer.phar install
-      - run: npm install
-      - run: phpunit
-      - run: npm run generateMo
+      - run: sudo apt-get install mysql-client
+      - run: composer install
+      - run: bash ./.bin/install-wp-tests.sh wordpress_test root '' localhost 5.1.1
+      - run: vendor/bin/phpunit
 
       - persist_to_workspace:
           root: .
@@ -25,12 +18,13 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:lts
+      - image: wordpress:5.1.1
     working_directory: ~/repo
     steps:
       - attach_workspace:
           at: .
       - run: ./.bin/circle-release.sh
+
 workflows:
   version: 2
   build:
