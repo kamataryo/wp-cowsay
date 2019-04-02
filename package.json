@@ -1,6 +1,7 @@
 {
   "name": "wp-cowsay",
   "scripts": {
+    "test": "exit 0",
     "generateMo": "gulp gettext",
     "generatePot": "grunt i18n",
     "deploy_keygen": "ssh-keygen -t rsa -b 4096 -C \"$(git config user.email)\" -f ./.travis_rsa -N ''",

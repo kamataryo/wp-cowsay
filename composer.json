@@ -11,5 +11,8 @@
     ],
     "require": {
         "alrik11es/cowsayphp": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*|5.7.*"
     }
 }
