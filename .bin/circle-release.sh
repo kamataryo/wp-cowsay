@@ -8,6 +8,12 @@
 set -e
 shopt -s dotglob
 
+if [[ ${CIRCLE_TAG:0:1} == 'v' ]]; then
+	TAG=${CIRCLE_TAG:1}
+else
+	TAG=$CIRCLE_TAG
+fi
+
 # store values for later process
 RELEASE_DIR=$(pwd)
 
@@ -41,20 +47,20 @@ find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "screenshot
 find ./trunk -type d -name '.svn' -prune -o -type f -print | grep -e "banner-[1-9][0-9]*x[1-9][0-9]*\.[png|jpg]." | xargs -I% mv % ./assets
 
 ## create tag for svn
-if [[ -e "./tags/${CIRCLE_TAG}" ]]; then
-    echo "existing 'tags/${CIRCLE_TAG}' is overwriting.."
-    find "./tags/${CIRCLE_TAG}" -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
+if [[ -e "./tags/${TAG}" ]]; then
+    echo "existing 'tags/${TAG}' is overwriting.."
+    find "./tags/${TAG}" -type d -name '.svn' -prune -o -type f -print | xargs -I% rm -r %
 else
-    mkdir "./tags/${CIRCLE_TAG}"
+    mkdir "./tags/${TAG}"
 fi
-echo "creating 'tags/${CIRCLE_TAG}'.."
-cp -r "$RELEASE_DIR"/* "./tags/${CIRCLE_TAG}"
+echo "creating 'tags/${TAG}'.."
+cp -r "$RELEASE_DIR"/* "./tags/${TAG}"
 
-if [[ -e "./.svnignore" ]]; then
-    svn propset svn:ignore -F ./.svnignore .
+if [[ -e "$RELEASE_DIR/.svnignore" ]]; then
+    svn propset svn:ignore -F "$RELEASE_DIR/.svnignore" .
 fi
 
-## putting svn versioning
+echo 'putting svn versioning..'
 svn st | grep '^!' | sed -e 's/\![ ]*/svn del -q /g' | sh
 svn st | grep '^?' | sed -e 's/\?[ ]*/svn add -q /g' | sh
 
